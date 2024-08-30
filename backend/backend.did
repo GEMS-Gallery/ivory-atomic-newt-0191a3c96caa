@@ -1,0 +1,29 @@
+type TaxPayer = 
+ record {
+   address: opt text;
+   firstName: text;
+   lastName: text;
+   tid: nat;
+ };
+type Result_2 = 
+ variant {
+   err: text;
+   ok: nat;
+ };
+type Result_1 = 
+ variant {
+   err: text;
+   ok: TaxPayer;
+ };
+type Result = 
+ variant {
+   err: text;
+   ok;
+ };
+service : {
+  createTaxPayer: (text, text, opt text) -> (Result_2);
+  deleteTaxPayer: (nat) -> (Result);
+  getAllTaxPayers: () -> (vec TaxPayer) query;
+  getTaxPayerByTID: (nat) -> (Result_1) query;
+  updateTaxPayer: (nat, text, text, opt text) -> (Result);
+}
